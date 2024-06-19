@@ -1,0 +1,83 @@
+﻿@model MenuVM 
+
+
+@{
+    var activeCategory = Model.Categories.FirstOrDefault(c => c.Name == "Special");
+}
+
+
+@section Css{
+    <style>
+        .l{
+            color:white;;
+            background-color:darkorange;
+            padding:8px;
+            margin:3px 7px;
+            border-radius:8px;
+        }
+
+
+    </style>
+}
+
+<!-- food_menu start-->
+<section class="food_menu gray_bg">
+    <div class="container">
+        <div class="row justify-content-between">
+
+
+            <div class="col-lg-12 my-2">
+                <div class="nav nav-pills food_menu_nav" id="myTab" role="tablist">
+                    @foreach (Category category in Model.Categories)
+                    {
+                        <a class="l @(category == Model.Categories.First() && activeCategory == null ? "active" : (category == activeCategory ? "active" : ""))"
+                           id="@($"{category.Name.Replace(" ", "")}-tab")" data-toggle="pill" href="#@($"{category.Name.Replace(" ", "")}")"
+                           role="tab" aria-controls="@($"{category.Name.Replace(" ", "")}")" aria-selected="false">
+                            @category.Name
+                        </a>
+                    }
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="tab-content" id="myTabContent">
+                    @foreach (Category category in Model.Categories)
+                    {
+                        <div class="tab-pane @(category == activeCategory || (category == Model.Categories.First() && activeCategory == null) ? "show active" : "")" id="@($"{category.Name.Replace(" ", "")}")" role="tabpanel">
+                            <div class="row my-3">
+                                @foreach (Product product in category.Products)
+                                {
+                                    <div class="col-sm-6 col-lg-6">
+                                        <div class="single_food_item media">
+                                            <img src="~/img/products/@product.Image" class="mr-3" alt="..." style="height:150px;width:150px; object-fit:cover;">
+                                            <div class="media-body align-self-center">
+                                                <h3>@product.Name</h3>
+                                                @* <p>They're wherein heaven seed hath nothing</p> *@
+                                                <h5>@product.Price Azn</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+<!-- food_menu part end-->
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('.nav-pills a').on('click', function (e) {
+                e.preventDefault();
+                $(this).tab('show');
+            });
+        });
+    </script>
+
+}

@@ -1,0 +1,10 @@
+﻿using Dingo.Application.Repositories;
+using Dingo.Domain.Entities;
+
+namespace Dingo.Application.Abstracts
+{
+    public interface IInfoReadRepository : IReadRepository<Info>
+    {
+        Task<Info> GetCachingInfoAsync();
+    }
+}

@@ -1,0 +1,10 @@
+﻿using Dingo.Application.Repositories;
+using Dingo.Domain.Entities;
+
+namespace Dingo.Application.Abstracts
+{
+    public interface ISocialMediaReadRepository : IReadRepository<SocialMedia>
+    {
+        Task<List<SocialMedia>> GetCachingActiveSocialMediasAsync();
+    }
+}

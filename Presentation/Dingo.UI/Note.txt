@@ -1,0 +1,6 @@
+﻿6 Entities var.
+
+Login səhifəsi düzəltmək lazımdır - HAZIR
+Admin Paneldə User Controller düzəltmək lazımdır - HAZIR
+İnfo entity-sindən googlemaps columnu silmək lazımdır - HAZIR
+Footerdə contactı düzəltmək lazımdır. - HAZIR
